@@ -1,5 +1,9 @@
 package antlr;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,11 +62,7 @@ public class AntlrBunchListener extends BunchBaseListener {
 				+ "one sig " +modulo+", "+subDeclaracao()+" extends Object{}\n\n"
 				+ "fact chamada {usa = \n" + subChamada() + "}\n\n"
 				+ "pred show {}\n\n"
-				+ "run show";
+				+ "run show\n\n\n";
 	}
-
-
     
-    
- 
 }

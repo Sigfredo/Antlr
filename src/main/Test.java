@@ -1,9 +1,13 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,12 +23,15 @@ import antlr.BunchParser.ArquivoContext;
 
 public class Test {
 	
+	String textoArquivo = "";
+	
 	private static final String FILENAME = "C:\\test\\SisRU_Completo.mdg.bunch";
 	
 	public static void main(String[] args) {
 		//new Test().printBunch("SS(sisru.persistencia.ss) = fast.web.listener, fast.core.web, fast2;");
 		Test test = new Test();
 		test.leArquivo(FILENAME);
+		test.criarArquivo();
 	}
 	
 	
@@ -102,8 +109,19 @@ public class Test {
 	    ParseTreeWalker walker = new ParseTreeWalker();
 	    AntlrBunchListener listener = new AntlrBunchListener();
 	    walker.walk(listener, bunchArquivoContext);
-	    System.out.println(listener.getMensagem());
+	    textoArquivo += listener.getMensagem();
 	}
+	
+	public void criarArquivo(){
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+            new FileOutputStream("C:\\test\\resultadoAlloy.txt"), "utf-8"))) {
+		writer.write(textoArquivo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	
 
 }
