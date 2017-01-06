@@ -19,22 +19,23 @@ import antlr.BunchParser.ArquivoContext;
 
 public class Test {
 	
-	private static final String FILENAME = "E:\\test\\filename.txt";
+	private static final String FILENAME = "C:\\test\\SisRU_Completo.mdg.bunch";
 	
 	public static void main(String[] args) {
 		//new Test().printBunch("SS(sisru.persistencia.ss) = fast.web.listener, fast.core.web, fast2;");
-		new Test().print(leArquivo(FILENAME));
+		Test test = new Test();
+		test.leArquivo(FILENAME);
 	}
 	
 	
-	public void print(List<String> tokens){
-		
-		for (String string : tokens) {
-			
-			print 
-		}
-		
-	}
+//	public void print(List<String> tokens){
+//		
+//		for (String token : tokens) {
+//			
+//			printBunch(token); 
+//		}
+//		
+//	}
 	
 	public List<String> leArquivo(String filename){
 		
@@ -52,12 +53,14 @@ public class Test {
 			br = new BufferedReader(new FileReader(FILENAME));
 
 			while ((sCurrentLine = br.readLine()) != null) {
-				String[] tokens = sCurrentLine.split("SS");
-				for (String token : tokens)
-				{
-					linhas.add("SS" + token);
-				}
+				//String[] tokens = sCurrentLine.split("SS");
+//				for (String token : tokens)
+//				{
+					//linhas.add("SS" + token);
+					printBunch(sCurrentLine);
+				//}
 			}
+			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -77,6 +80,7 @@ public class Test {
 
 
 		}
+		return linhas;
 		
 	}
 	
