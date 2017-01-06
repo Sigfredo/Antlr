@@ -17,13 +17,37 @@ public class BunchBaseListener implements BunchListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNomeSubmodulo(@NotNull BunchParser.NomeSubmoduloContext ctx) { }
+	@Override public void enterSubmodulo(@NotNull BunchParser.SubmoduloContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNomeSubmodulo(@NotNull BunchParser.NomeSubmoduloContext ctx) { }
+	@Override public void exitSubmodulo(@NotNull BunchParser.SubmoduloContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLine(@NotNull BunchParser.LineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLine(@NotNull BunchParser.LineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArquivo(@NotNull BunchParser.ArquivoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArquivo(@NotNull BunchParser.ArquivoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -36,18 +60,6 @@ public class BunchBaseListener implements BunchListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitModulo(@NotNull BunchParser.ModuloContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterNomeModulo(@NotNull BunchParser.NomeModuloContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNomeModulo(@NotNull BunchParser.NomeModuloContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

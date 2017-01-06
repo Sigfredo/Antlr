@@ -9,15 +9,35 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface BunchListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link BunchParser#nomeSubmodulo}.
+	 * Enter a parse tree produced by {@link BunchParser#submodulo}.
 	 * @param ctx the parse tree
 	 */
-	void enterNomeSubmodulo(@NotNull BunchParser.NomeSubmoduloContext ctx);
+	void enterSubmodulo(@NotNull BunchParser.SubmoduloContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link BunchParser#nomeSubmodulo}.
+	 * Exit a parse tree produced by {@link BunchParser#submodulo}.
 	 * @param ctx the parse tree
 	 */
-	void exitNomeSubmodulo(@NotNull BunchParser.NomeSubmoduloContext ctx);
+	void exitSubmodulo(@NotNull BunchParser.SubmoduloContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link BunchParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void enterLine(@NotNull BunchParser.LineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BunchParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void exitLine(@NotNull BunchParser.LineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link BunchParser#arquivo}.
+	 * @param ctx the parse tree
+	 */
+	void enterArquivo(@NotNull BunchParser.ArquivoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BunchParser#arquivo}.
+	 * @param ctx the parse tree
+	 */
+	void exitArquivo(@NotNull BunchParser.ArquivoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link BunchParser#modulo}.
 	 * @param ctx the parse tree
@@ -28,14 +48,4 @@ public interface BunchListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitModulo(@NotNull BunchParser.ModuloContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link BunchParser#nomeModulo}.
-	 * @param ctx the parse tree
-	 */
-	void enterNomeModulo(@NotNull BunchParser.NomeModuloContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link BunchParser#nomeModulo}.
-	 * @param ctx the parse tree
-	 */
-	void exitNomeModulo(@NotNull BunchParser.NomeModuloContext ctx);
 }
