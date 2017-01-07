@@ -110,6 +110,7 @@ public class Test {
 	    AntlrBunchListener listener = new AntlrBunchListener();
 	    walker.walk(listener, bunchArquivoContext);
 	    textoArquivo += listener.getMensagem();
+	    bunchArquivoContext.
 	}
 	
 	public void criarArquivo(){

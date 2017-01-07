@@ -22,7 +22,7 @@ public class AntlrBunchListener extends BunchBaseListener {
     	String[] s = ctx.getText().split("[SS\\(\\)]");
     	for (int i = 0; i < s.length; i++) {
     		if(!s[i].trim().equals("")){
-    			modulo = s[i];
+    			modulo = s[i].replace(".", "_");
     		}
 		}
     }
@@ -30,19 +30,26 @@ public class AntlrBunchListener extends BunchBaseListener {
     @Override
     public void enterSubmodulo(BunchParser.SubmoduloContext ctx) {
     	//subModulos.add(ctx.getText().substring(1).replace(".", "_"));
-    	subModulos.add(ctx.getText());
+    	//subModulos.add(ctx.getText());
     	
-//    	String[] s = ctx.getText().split("SS\\(,\\)");
-//    	for (int i = 0; i < s.length; i++) {
-//    		subModulos.add(s[i]);
-//		}
+    	String[] s = ctx.getText().split("[\\=\\,]");
+    	for (int i = 0; i < s.length; i++) {
+    		if(!s[i].trim().equals("")){
+    			subModulos.add(s[i].replace(".", "_"));
+    		}
+		}
     }
     
 
     private String subDeclaracao(){
     	String retorno = "";
+    	
     	for (String s : subModulos){
-    		retorno += s + " ";
+    		if(retorno.equals("")){
+    			retorno += s;
+    		}else{
+    			retorno += ", " + s;
+    		}
     	}
     	return retorno;
     }
@@ -50,7 +57,12 @@ public class AntlrBunchListener extends BunchBaseListener {
     private String subChamada(){
     	String retorno = "";
     	for (String s : subModulos){
-    		retorno += modulo + "->" + s + "\n";
+    		if(retorno.equals("")){
+    			retorno += modulo + "->" + s + "\n";
+    		}else{
+    			retorno += "+"+ modulo + "->" + s + "\n";
+    		}
+    		
     	}
     	return retorno;
     }
