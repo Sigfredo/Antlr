@@ -1,9 +1,5 @@
 package antlr;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +37,7 @@ public class AntlrBunchListener extends BunchBaseListener {
     }
     
 
-    private String subDeclaracao(){
-    	String retorno = "";
-    	
+    public String getDeclaracao(String retorno){   	
     	for (String s : subModulos){
     		if(retorno.equals("")){
     			retorno += s;
@@ -51,11 +45,10 @@ public class AntlrBunchListener extends BunchBaseListener {
     			retorno += ", " + s;
     		}
     	}
-    	return retorno;
+    	return retorno + ", "+ modulo;
     }
     
-    private String subChamada(){
-    	String retorno = "";
+    public String getRelacionamento(String retorno){
     	for (String s : subModulos){
     		if(retorno.equals("")){
     			retorno += modulo + "->" + s + "\n";
@@ -67,14 +60,20 @@ public class AntlrBunchListener extends BunchBaseListener {
     	return retorno;
     }
     
-	public String getMensagem() {
-		//return "Modulo = " +modulo+ "\nSubmodulo = " + subModulo;
-		return "module " + modulo +"\n\n"
-				+"abstract sig Object { usa: set Object }\n\n"
-				+ "one sig " +modulo+", "+subDeclaracao()+" extends Object{}\n\n"
-				+ "fact chamada {usa = \n" + subChamada() + "}\n\n"
-				+ "pred show {}\n\n"
-				+ "run show\n\n\n";
+//	public String getMensagem() {
+//		//return "Modulo = " +modulo+ "\nSubmodulo = " + subModulo;
+//		return "module " + modulo +"\n\n"
+//				+"abstract sig Object { usa: set Object }\n\n"
+//				+ "one sig " +modulo+", "+getDeclaracao()+" extends Object{}\n\n"
+//				+ "fact chamada {usa = \n" + getRelacionamento() + "}\n\n"
+//				+ "pred show {}\n\n"
+//				+ "run show\n\n\n";
+//	}
+
+	public String getModulo() {
+		return modulo;
 	}
+	
+	
     
 }

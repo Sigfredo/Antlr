@@ -23,7 +23,10 @@ import antlr.BunchParser.ArquivoContext;
 
 public class Test {
 	
-	String textoArquivo = "";
+	private String textoArquivo = "";
+	private String declaracao = "";
+	private String relacionamento = "";
+	private String modulo = ""; 
 	
 	private static final String FILENAME = "C:\\test\\SisRU_Completo.mdg.bunch";
 	
@@ -109,14 +112,24 @@ public class Test {
 	    ParseTreeWalker walker = new ParseTreeWalker();
 	    AntlrBunchListener listener = new AntlrBunchListener();
 	    walker.walk(listener, bunchArquivoContext);
-	    textoArquivo += listener.getMensagem();
-	    bunchArquivoContext.
+	    //textoArquivo += listener.getMensagem();
+	    modulo = listener.getModulo();
+	    declaracao = listener.getDeclaracao(declaracao);
+	    relacionamento = listener.getRelacionamento(relacionamento);
+	    //bunchArquivoContext.
 	}
 	
 	public void criarArquivo(){
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
             new FileOutputStream("C:\\test\\resultadoAlloy.txt"), "utf-8"))) {
-		writer.write(textoArquivo);
+		writer.write(
+				"module " + modulo +"\n\n"
+						+"abstract sig Object { usa: set Object }\n\n"
+						+ "one sig " +modulo+", "+declaracao+" extends Object{}\n\n"
+						+ "fact chamada {usa = \n" + relacionamento + "}\n\n"
+						+ "pred show {}\n\n"
+						+ "run show\n\n\n"							
+					);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
