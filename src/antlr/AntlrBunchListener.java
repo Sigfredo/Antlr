@@ -1,6 +1,7 @@
 package antlr;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class AntlrBunchListener extends BunchBaseListener {
@@ -37,15 +38,12 @@ public class AntlrBunchListener extends BunchBaseListener {
     }
     
 
-    public String getDeclaracao(String retorno){   	
+    public HashSet<String> getDeclaracao(HashSet<String> retorno){   	
     	for (String s : subModulos){
-    		if(retorno.equals("")){
-    			retorno += s;
-    		}else{
-    			retorno += ", " + s;
-    		}
+    			retorno.add(s);
     	}
-    	return retorno + ", "+ modulo;
+    	retorno.add(modulo);
+    	return retorno;
     }
     
     public String getRelacionamento(String retorno){

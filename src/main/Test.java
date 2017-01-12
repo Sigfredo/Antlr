@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class Test {
 	private String declaracao = "";
 	private String relacionamento = "";
 	private String modulo = ""; 
+	
+	private HashSet<String> declaracaoHashSet = new HashSet<String>();
 	
 	private static final String FILENAME = "C:\\test\\SisRU_Completo.mdg.bunch";
 	
@@ -114,18 +117,24 @@ public class Test {
 	    walker.walk(listener, bunchArquivoContext);
 	    //textoArquivo += listener.getMensagem();
 	    modulo = listener.getModulo();
-	    declaracao = listener.getDeclaracao(declaracao);
+	    declaracaoHashSet = listener.getDeclaracao(declaracaoHashSet);
 	    relacionamento = listener.getRelacionamento(relacionamento);
 	    //bunchArquivoContext.
 	}
 	
 	public void criarArquivo(){
+		declaracao = declaracaoHashSet.iterator().next();
+		for (String s : declaracaoHashSet) {
+			if (!s.equals(declaracaoHashSet.iterator().next())){
+				declaracao += ", "+s;
+			}
+		}
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
             new FileOutputStream("C:\\test\\resultadoAlloy.txt"), "utf-8"))) {
 		writer.write(
 				"module " + modulo +"\n\n"
 						+"abstract sig Object { usa: set Object }\n\n"
-						+ "one sig " +modulo+", "+declaracao+" extends Object{}\n\n"
+						+ "one sig "+declaracao+" extends Object{}\n\n"
 						+ "fact chamada {usa = \n" + relacionamento + "}\n\n"
 						+ "pred show {}\n\n"
 						+ "run show\n\n\n"							
