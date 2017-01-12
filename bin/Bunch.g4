@@ -3,16 +3,24 @@
  */
 grammar Bunch;
 
-modulo :  nomeModulo nomeSubmodulo ;
+arquivo
+    : line+
+    ;
 
-nomeModulo : NOME ;
-nomeSubmodulo : SUBMODULO ;
+line
+    : modulo
+    | submodulo
+    ;
+
+modulo
+    : 'SS(' LABEL ') '
+    ;
+
+submodulo
+    : ('= ' | ' ') LABEL (',')?
+    ;
 
 
-//NOME : 'sisru' ;
-NOME : 'SS(' [a-z|.]+ ')' ;
-SUBMODULO:
-   [a-z|.]+;
-
-
-
+LABEL
+    : [a-zA-Z0-9_.+\\-/*=&]+
+    ;
