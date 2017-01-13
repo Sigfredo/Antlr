@@ -19,7 +19,7 @@ public class AntlrBunchListener extends BunchBaseListener {
     	String[] s = ctx.getText().split("[SS\\(\\)]");
     	for (int i = 0; i < s.length; i++) {
     		if(!s[i].trim().equals("")){
-    			modulo = s[i].replace(".", "_");
+    			modulo = s[i].replace(".ss", "").replace(".", "_").trim();
     		}
 		}
     }
@@ -32,7 +32,7 @@ public class AntlrBunchListener extends BunchBaseListener {
     	String[] s = ctx.getText().split("[\\=\\,]");
     	for (int i = 0; i < s.length; i++) {
     		if(!s[i].trim().equals("")){
-    			subModulos.add(s[i].replace(".", "_"));
+    			subModulos.add(s[i].replace(".", "_").trim());
     		}
 		}
     }
@@ -68,8 +68,8 @@ public class AntlrBunchListener extends BunchBaseListener {
 //				+ "run show\n\n\n";
 //	}
 
-	public String getModulo() {
-		return modulo;
+	public String getSistema() {
+		return modulo.split("_")[0].trim();
 	}
 	
 	

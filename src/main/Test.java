@@ -28,6 +28,7 @@ public class Test {
 	private String declaracao = "";
 	private String relacionamento = "";
 	private String modulo = ""; 
+	private Mensagem mensagem = new Mensagem();
 	
 	private HashSet<String> declaracaoHashSet = new HashSet<String>();
 	
@@ -116,7 +117,7 @@ public class Test {
 	    AntlrBunchListener listener = new AntlrBunchListener();
 	    walker.walk(listener, bunchArquivoContext);
 	    //textoArquivo += listener.getMensagem();
-	    modulo = listener.getModulo();
+	    modulo = listener.getSistema();
 	    declaracaoHashSet = listener.getDeclaracao(declaracaoHashSet);
 	    relacionamento = listener.getRelacionamento(relacionamento);
 	    //bunchArquivoContext.
@@ -133,9 +134,10 @@ public class Test {
             new FileOutputStream("C:\\test\\resultadoAlloy.txt"), "utf-8"))) {
 		writer.write(
 				"module " + modulo +"\n\n"
-						+"abstract sig Object { usa: set Object }\n\n"
+						+"abstract sig Object { usa: set Object"+mensagem.getViolacaoDeclaracao()+" }\n\n"
 						+ "one sig "+declaracao+" extends Object{}\n\n"
 						+ "fact chamada {usa = \n" + relacionamento + "}\n\n"
+						+ mensagem.getViolacao()+"\n\n"
 						+ "pred show {}\n\n"
 						+ "run show\n\n\n"							
 					);
