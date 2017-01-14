@@ -131,7 +131,7 @@ public class Test {
 			}
 		}
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-            new FileOutputStream("C:\\test\\resultadoAlloy.txt"), "utf-8"))) {
+            new FileOutputStream("C:\\test\\resultadoAlloy.als"), "utf-8"))) {
 		writer.write(
 				"module " + modulo +"\n\n"
 						+"abstract sig Object { usa: set Object"+mensagem.getViolacaoDeclaracao()+" }\n\n"
